@@ -1,0 +1,7 @@
+.container {
+  max-width: auto;
+  background-color: salmon;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 1fr;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <title>Contact-list</title>
+    <link rel="stylesheet" href="styles-css/head-body.css" />
+    <link rel="stylesheet" href="styles-css/container.css" />
+    <link rel="stylesheet" href="styles-css/section.css" />
+    <link rel="stylesheet" href="styles-css/form.css" />
+    <link rel="stylesheet" href="styles-css/input-group.css" />
+    <link rel="stylesheet" href="styles-css/listado-tareas.css" />
+  </head>
+  <body>
+    <div class="container">
+      <section>
+        <form>
+          <div class="input-group">
+            <h1>Contacto</h1>
+
+            <label for="id">Id:</label>
+            <input type="text" name="id" class="id" placeholder="Ingresa Id" />
+
+            <label for="nombre">Nombre:</label>
+            <input
+              type="text"
+              name="nombre"
+              class="nombre"
+              placeholder="Ingresa Nombre"
+            />
+
+            <label for="surname">Apellido:</label>
+            <input
+              type="text"
+              name="surname"
+              class="surname"
+              placeholder="Ingresa Apellido"
+            />
+
+            <label for="phone">Telefono:</label>
+            <input
+              type="text"
+              name="phone"
+              class="phone"
+              placeholder="Ingresa Telefono"
+            />
+
+            <label for="city">Ciudad:</label>
+            <input
+              type="text"
+              name="city"
+              class="city"
+              placeholder="Ingresa Ciudad"
+            />
+
+            <label for="address">Direccion:</label>
+            <input
+              type="text"
+              name="address"
+              class="address"
+              placeholder="Ingresa Direccion"
+            />
+
+            <button class="enviar-datos">Enviar Datos</button>
+            <div class="listado-tareas">
+              <div class="tareas">
+                <h2>Id</h2>
+                <p>Nombre</p>
+                <p>Apellido</p>
+                <p>Telefono</p>
+                <p>Ciudad</p>
+                <p>Direccion</p>
+                <span class="material-symbols-outlined icono">
+                  delete_forever
+                </span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+    <script src="modulo-js/modulo.js"></script>
+    <script src="modulo-js/funciones.js"></script>
+  </body>
+</html>

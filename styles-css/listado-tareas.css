@@ -1,0 +1,15 @@
+.listado-tareas {
+  display: flex;
+  flex-direction: column;
+}
+
+.tareas {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.icono {
+  color: rgb(226, 43, 43);
+  cursor: pointer;
+}
