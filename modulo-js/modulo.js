@@ -21,3 +21,5 @@ boton.onclick = () => {
   };
   guardarContacto(localstor, contacto);
 };
+
+cargarContactos(localstor, listadoTareas);
