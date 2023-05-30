@@ -17,12 +17,18 @@ const crearContacto = (parentNode, contacto, db) => {
   let cedulaContacto = document.createElement("h3");
   let nombreContacto = document.createElement("p");
   let apellidoContacto = document.createElement("p");
+  let telefonoContacto = document.createElement("p");
+  let ciudadContacto = document.createElement("p");
+  let direccionContacto = document.createElement("p");
 
   let iconoBorrar = document.createElement("span");
 
   cedulaContacto.innerHTML = contacto.cedula;
   nombreContacto.innerHTML = contacto.nombre;
   apellidoContacto.innerHTML = contacto.apellido;
+  telefonoContacto.innerHTML = contacto.telefono;
+  ciudadContacto.innerHTML = contacto.ciudad;
+  direccionContacto.innerHTML = contacto.direccion;
 
   iconoBorrar.innerHTML = "delete_forever";
 
@@ -37,6 +43,9 @@ const crearContacto = (parentNode, contacto, db) => {
   divContacto.appendChild(cedulaContacto);
   divContacto.appendChild(nombreContacto);
   divContacto.appendChild(apellidoContacto);
+  divContacto.appendChild(telefonoContacto);
+  divContacto.appendChild(ciudadContacto);
+  divContacto.appendChild(direccionContacto);
   divContacto.appendChild(iconoBorrar);
 
   parentNode.appendChild(divContacto);
