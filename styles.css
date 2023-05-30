@@ -12,17 +12,21 @@ html {
 }
 
 body {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
   color: rgba(200, 200, 200, 0.9);
 }
 
 .container {
-  height: 100vh;
-  width: 70vh;
-  margin: 2rem auto;
+  background-color: rgba(0, 0, 0, 0.8);
+ border-radius: 3rem;
+  height: auto;
+  width: 110vh;
+  margin: 3rem auto;
 }
 
 .container > h2 {
+  padding-top: 5rem;
+  margin-top: 5rem;
   text-align: center;
   margin-bottom: 2rem;
   font-size: 2.5rem;
@@ -66,6 +70,7 @@ body {
 }
 
 .listado-tareas {
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -75,9 +80,15 @@ body {
   flex-direction: row;
   justify-content: space-between;
   height: 4rem;
+  background-color: rgba(0, 100, 0, 0.5);
 }
 
 .icono {
   color: rgba(0, 100, 0, 0.847);
   cursor: pointer;
+}
+
+.tarea > p {
+  border-left: 1px solid darkgreen;
+  height: 2rem;
 }
