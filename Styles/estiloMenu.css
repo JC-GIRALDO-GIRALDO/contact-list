@@ -1,0 +1,36 @@
+.estiloMenu {
+  display: grid;
+  grid-template-rows: 40px 230px 27px;
+}
+
+.estiloMenu > h1 {
+  margin: 3rem auto;
+  font-size: 35px;
+}
+
+.estiloMenu > img {
+  width: 200px;
+  margin: 6rem auto;
+}
+
+.estiloMenu > .menu {
+  width: 80%;
+  margin: 4rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.estiloMenu > .menu > a {
+  font-size: 15px;
+  color: rgba(200, 200, 200, 0.9);
+  text-decoration: none;
+  text-align: center;
+  margin: 1rem auto;
+  width: 80%;
+  border-bottom: 5px solid #6b8287;
+}
+
+.estiloMenu > .menu > a:hover {
+  color: white;
+  transition: 0.5ms;
+}
