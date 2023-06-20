@@ -1,0 +1,30 @@
+.datos-lista {
+    width: 90%;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.generar-lista {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.generar-lista > input {
+    margin-bottom: 10px;
+    height: 25px;
+    background-color: rgba(0, 0, 0, 0.4);
+    outline: none;
+    border-bottom-right-radius: 10px;
+}
+
+.generar-lista > input:focus {
+    border-bottom: 2px solid yellowgreen;
+}
+
+.generar-lista > input:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}

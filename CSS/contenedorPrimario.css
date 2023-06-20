@@ -1,0 +1,17 @@
+.header {
+    
+    margin: auto;
+   display: flex;
+   flex-direction: column;
+}
+
+.header > h1 {
+    margin: 1rem auto;
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+img {
+    margin: 0 auto;
+    width: 40%;
+}
