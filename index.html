@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LISTA-CONTACTOS</title>
-    <link rel="stylesheet" href="CSS/html-body.css" />
-    <link rel="stylesheet" href="CSS/contenedorPrincipal.css" />
-    <link rel="stylesheet" href="CSS/contenedorPrimario.css" />
-    <link rel="stylesheet" href="CSS/contenedorSecundario.css" />
+    <link rel="stylesheet" href="CSS/html-body.css">
+    <link rel="stylesheet" href="CSS/contenedorPrincipal.css">
+    <link rel="stylesheet" href="CSS/contenedorPrimario.css">
+    <link rel="stylesheet" href="CSS/contenedorSecundario.css">
 
     <!--https://icon-icons.com/es/download/2915/PNG/512/-->
-  </head>
-  <body>
+</head>
+<body>
     <!--Contenedor Principal-->
     <div class="container">
-      <!--Contenedor primario-->
-      <div class="header">
-        <h1>CREAR LISTA</h1>
-        <img src="Iconos/lista-cont-color.png" alt="Ixono-Lista-Contactos" />
-      </div>
-      <!--Contenedor secundario-->
-      <div class="datos-lista">
-        <form class="generar-lista">
-          <input type="text" class="nombre" placeholder="Tu nombre..." />
-          <input type="text" class="apellido" placeholder="Tu apellido..." />
-
-          <button type="button" class="enviar-lista" onclick="copiarLista()">
-            ENVIAR LISTA
-          </button>
-        </form>
-      </div>
-      <div id="agregar-lista"></div>
+        <!--Contenedor primario-->
+        <div class="header">
+    <h1>CREAR LISTA</h1>
+    <img class="imagen-principal" src="Iconos/lista-cont-color.png" alt="Ixono-Lista-Contactos">
+</div>
+  <!--Contenedor secundario-->
+    <div class="datos-lista">
+    <form class="generar-lista">
+        <input type="text" class="nombre" placeholder="Tu nombre...">
+        <input type="text" class="apellido" placeholder="Tu apellido...">
+        
+        <button type="button" class="enviar-lista" onclick="copiarLista()">ENVIAR LISTA</button>
+    </form>
     </div>
+    <!--boton para mostrar todas las listas juntas por consola-->  
+    <button type="button" class="imprimir-listas" onclick="imprimirLista()">IMPRIMIR LISTAS</button>
+    <!--Contenedor donde se crean los dados generados por javaScript-->
+    <div id="agregar-lista"></div>
+</div>
     <script src="JS/app.js"></script>
-  </body>
+</body>
 </html>

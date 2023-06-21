@@ -22,8 +22,8 @@
 
 .generar-lista button:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(133, 83, 83, 0.849);
+  color: rgba(255, 255, 255, 0.9);
   transition: 0.3s;
 }
 
@@ -58,8 +58,9 @@
 }
 
 #agregar-lista p {
+  font-size: 20px;
   margin: 5px auto;
-  height: 35px;
+  height: 30px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 5px;
 }
@@ -82,5 +83,22 @@
 }
 
 #agregar-lista button:hover:not(:focus) {
-  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.imprimir-listas {
+  cursor: pointer;
+  transition: 0.3s;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  width: 20%;
+  float: left;
+  position: relative;
+  left: 395px;
+  margin-bottom: 1rem;
+}
+
+.imprimir-listas:hover {
+  background-color: rgba(0, 0, 0, 0.4);
 }
