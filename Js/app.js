@@ -1,3 +1,4 @@
+// funcion para generar boton de borrar
 function crearBotonBorrar() {
   const botonBorrar = document.createElement("button");
   botonBorrar.textContent = "Borrar";
@@ -8,6 +9,7 @@ function crearBotonBorrar() {
   return botonBorrar;
 }
 
+// funcion para generar boton de editar el texto
 function editarParrafo(nuevoParrafo) {
   const botonParrafo = document.createElement("button");
   botonParrafo.textContent = "Editar";
@@ -27,15 +29,21 @@ function editarParrafo(nuevoParrafo) {
 }
 
 let copiarLista = () => {
+  //me trae el nombre del input
   const nombre = document.querySelector(".nombre").value;
+  //me trae el apellido del input
   const apellido = document.querySelector(".apellido").value;
+  //se creo un array con nombre y apellido
   const arregloNombre = [nombre, apellido];
+  //junte nombre y apellido juntos
   const nombreCompleto = arregloNombre.join(" ");
   console.log(nombreCompleto);
 
+  //selecciona la clase
   const elemento = document.getElementById("agregar-lista");
   const nuevaLista = document.createElement("div");
 
+  //crea el elemento de texto en la lixta (los nombres)
   const nuevoParrafo = document.createElement("p");
   nuevoParrafo.textContent = nombreCompleto;
   nuevaLista.appendChild(nuevoParrafo);
@@ -48,6 +56,7 @@ let copiarLista = () => {
 
   elemento.appendChild(nuevaLista);
 
+  //vuelve a poner los espacios del input en blanco
   document.querySelector(".nombre").value = "";
   document.querySelector(".apellido").value = "";
 };
@@ -89,8 +98,6 @@ let copiarLista = () => {
 };
 
 */
-
-
 
 /*let copiarLista = () => {
     const nombre = document.querySelector(".nombre").value;
