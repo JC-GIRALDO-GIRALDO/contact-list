@@ -22,14 +22,18 @@
   <!--Contenedor secundario-->
     <div class="datos-lista">
     <form class="generar-lista">
+        <input type="text" class="id" placeholder="Tu Id...">
         <input type="text" class="nombre" placeholder="Tu nombre...">
         <input type="text" class="apellido" placeholder="Tu apellido...">
+        <input type="text" class="telefono" placeholder="Tu telefono...">
+        <input type="text" class="ciudad" placeholder="Tu ciudad...">
+        <input type="text" class="direccion" placeholder="Tu direccion...">
         
-        <button type="button" class="enviar-lista" onclick="copiarLista()">ENVIAR LISTA</button>
+        <button type="button" class="boton-enviar" onclick="crearListaNueva()">ENVIAR LISTA</button>
     </form>
     </div>
     <!--boton para mostrar todas las listas juntas por consola-->  
-    <button type="button" class="imprimir-listas" onclick="imprimirLista()">IMPRIMIR LISTAS</button>
+    <button type="button" class="boton-enviar" onclick="crearListaNueva()">IMPRIMIR LISTAS</button>
     <!--Contenedor donde se crean los dados generados por javaScript-->
     <div id="agregar-lista"></div>
 </div>

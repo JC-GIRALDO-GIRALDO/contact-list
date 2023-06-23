@@ -1,6 +1,3 @@
-// Array para almacenar las listas generadas
-const listasGeneradas = [];
-
 // funcion para generar el boton de borrar
 function crearBotonBorrar() {
   
@@ -13,84 +10,189 @@ function crearBotonBorrar() {
   return botonBorrar;
 }
 
-// funcion para generar boton de editar el texto
-function editarParrafo(nuevoParrafo) {
-
-  const botonParrafo = document.createElement("button"); // Se crea un boton
-  botonParrafo.textContent = "Editar"; //nombre del boton
-  botonParrafo.classList.add("editar-parrafo"); //clase del boton
-  botonParrafo.addEventListener("click", () => {
-    const editarInput = document.createElement("input"); 
-    editarInput.value = nuevoParrafo.textContent;
-    nuevoParrafo.textContent = "";
-    nuevoParrafo.appendChild(editarInput);
-    
-    editarInput.addEventListener("blur", () => {
-      nuevoParrafo.textContent = editarInput.value;
-    });
+// Función para generar el botón de editar
+function crearBotonEditar(contacto) {
+  const botonEditar = document.createElement("button");
+  botonEditar.textContent = "Editar";
+  botonEditar.classList.add("boton-editar");
+  botonEditar.addEventListener("click", () => {
+    mostrarFormularioEdicion(contacto);
   });
-  return botonParrafo;
+  return botonEditar;
 }
 
-// funcion principal con la que se crea la lista 
-let copiarLista = () => {
-  //me trae el valor del nombre desde html input nombre
-  const nombre = document.querySelector(".nombre").value;
-  //condicional para que se deba ingresar el nombre
-  if(nombre.length === 0){
-    alert("El 'nombre' no ha sido ingresado");
-    return nombre;
-  }
+const agruparDatosDom = () => {
+  const objetoContacto = (id, nombre, apellido, telefono, ciudad, direccion) => {
+    const contactoUbicacion = {
+      ciudad: ciudad,
+      direccion: direccion
+    };
+
+    const contacto = {
+      id: id,
+      nombre: nombre,
+      apellido: apellido,
+      telefono: telefono,
+      ubicacion: contactoUbicacion
+    };
+
+    return contacto;
+  };
+  const datosContacto = {
+    id: document.querySelector(".id").value,
+    nombre: document.querySelector(".nombre").value,
+    apellido: document.querySelector(".apellido").value,
+    telefono: document.querySelector(".telefono").value,
+    ciudad: document.querySelector(".ciudad").value,
+    direccion: document.querySelector(".direccion").value
+  };
+
+  const contacto = objetoContacto(
+    datosContacto.id,
+    datosContacto.nombre,
+    datosContacto.apellido,
+    datosContacto.telefono,
+    datosContacto.ciudad,
+    datosContacto.direccion
+  );
+  const contactoJSON = JSON.stringify(contacto);
+  console.log(contactoJSON);
+
+  return contactoJSON; // Devolver el contacto como JSON en lugar de un objeto
+};
+
+const crearListaNueva = () => {
+  const contactoJSON = agruparDatosDom();
+  const contacto = JSON.parse(contactoJSON); // Convertir el contacto de nuevo a un objeto
+
+  const nuevoDiv = document.createElement("div");
+  const nuevoLista = document.createElement("ul");
+
   
-  //me trae el valor del apellido desde html input apellido
-  const apellido = document.querySelector(".apellido").value;
-  //condicional para que se deba ingresar el apellido
-  if(apellido.length === 0){
-    alert("El 'apellido' no ha sido ingresado");
-    return apellido;
+
+  for (const propiedad in contacto) {
+    if (propiedad === "ubicacion") {
+      const ubicacion = contacto[propiedad];
+      for (const ubicacionPropiedad in ubicacion) {
+        const nuevoItem = document.createElement("li");
+        nuevoItem.textContent = `${ubicacionPropiedad}: ${ubicacion[ubicacionPropiedad]}`;
+        nuevoLista.appendChild(nuevoItem);
+      }
+    } else {
+      const nuevoItem = document.createElement("li");
+      nuevoItem.textContent = `${propiedad}: ${contacto[propiedad]}`;
+      nuevoLista.appendChild(nuevoItem);
+    }
   }
 
-  //se creo un array con nombre y apellido
-  const arregloNombre = [nombre, apellido];
-  //junte nombre y apellido juntos
-  const nombreCompleto = arregloNombre.join(" ");
-  console.log(nombreCompleto);
+  nuevoDiv.appendChild(nuevoLista);
 
-  //selecciona la clase
-  const elemento = document.getElementById("agregar-lista");
-  const nuevaLista = document.createElement("div");
+  // Crear el botón de borrar
+  const botonBorrar = crearBotonBorrar();
+  nuevoDiv.appendChild(botonBorrar);
 
-  //crea el elemento de texto en la lixta (los nombres)
-  const nuevoParrafo = document.createElement("p");
-  nuevoParrafo.textContent = nombreCompleto;
-  nuevaLista.appendChild(nuevoParrafo);
+  // Crear el botón de editar
+  const botonEditar = crearBotonEditar(contacto);
+  nuevoDiv.appendChild(botonEditar);
 
-  const botonParrafo = editarParrafo(nuevoParrafo); // Crear el botón de borrar
-  nuevaLista.appendChild(botonParrafo); // Agregar el botón junto con la lista
+  document.getElementById("agregar-lista").appendChild(nuevoDiv);
 
-  const botonBorrar = crearBotonBorrar(); // Crear el botón de borrar
-  nuevaLista.appendChild(botonBorrar); // Agregar el botón junto con la lista
-
-  elemento.appendChild(nuevaLista);
-
-  // Agregar la lista generada al array
-  listasGeneradas.push(nombreCompleto);
-
-  //vuelve a poner los espacios del input en blanco
+  // Restablecer los campos del formulario
+  document.querySelector(".id").value = "";
   document.querySelector(".nombre").value = "";
   document.querySelector(".apellido").value = "";
+  document.querySelector(".telefono").value = "";
+  document.querySelector(".ciudad").value = "";
+  document.querySelector(".direccion").value = "";
+};
+/*
+// funcion para generar el boton de borrar
+function crearBotonBorrar() {
+  
+  const botonBorrar = document.createElement("button"); // Se crea un boton
+  botonBorrar.textContent = "Borrar"; //nombre del boton
+  botonBorrar.classList.add("boton-borrar"); //clase del boton
+  botonBorrar.addEventListener("click", () => {
+    botonBorrar.parentElement.remove(); //funcion flecha para generar la accion de borrar del boton creado
+  });
+  return botonBorrar;
+}
+const agruparDatosDom = () => {
+  const objetoContacto = (id, nombre, apellido, telefono, ciudad, direccion) => {
+    const contactoUbicacion = {
+      ciudad: ciudad,
+      direccion: direccion
+    };
+
+    const contacto = {
+      id: id,
+      nombre: nombre,
+      apellido: apellido,
+      telefono: telefono,
+      ubicacion: contactoUbicacion
+    };
+
+    return contacto;
+  };
+  const datosContacto = {
+    id: document.querySelector(".id").value,
+    nombre: document.querySelector(".nombre").value,
+    apellido: document.querySelector(".apellido").value,
+    telefono: document.querySelector(".telefono").value,
+    ciudad: document.querySelector(".ciudad").value,
+    direccion: document.querySelector(".direccion").value
+  };
+
+  const contacto = objetoContacto(
+    datosContacto.id,
+    datosContacto.nombre,
+    datosContacto.apellido,
+    datosContacto.telefono,
+    datosContacto.ciudad,
+    datosContacto.direccion
+  );
+  const contactoJSON = JSON.stringify(contacto);
+  console.log(contactoJSON);
+
+  return contactoJSON; // Devolver el contacto como JSON en lugar de un objeto
 };
 
-// Función para imprimir todas las listas generadas en la consola
-let imprimirLista = () => {
-  //condicional por si no se ha generado listas nuevas
-  if (listasGeneradas.length === 0) {
-    alert("No hay listas para imprimir");
-    return;
+const crearListaNueva = () => {
+  const contactoJSON = agruparDatosDom();
+  const contacto = JSON.parse(contactoJSON); // Convertir el contacto de nuevo a un objeto
+
+  const nuevoDiv = document.createElement("div");
+  const nuevoLista = document.createElement("ul");
+
+  for (const propiedad in contacto) {
+    if (propiedad === "ubicacion") {
+      const ubicacion = contacto[propiedad];
+      for (const ubicacionPropiedad in ubicacion) {
+        const nuevoItem = document.createElement("li");
+        nuevoItem.textContent = `${ubicacionPropiedad}: ${ubicacion[ubicacionPropiedad]}`;
+        nuevoLista.appendChild(nuevoItem);
+      }
+    } else {
+      const nuevoItem = document.createElement("li");
+      nuevoItem.textContent = `${propiedad}: ${contacto[propiedad]}`;
+      nuevoLista.appendChild(nuevoItem);
+    }
   }
 
-  listasGeneradas.forEach((lista) => {
-    alert(`${lista}`);
-  });
+  nuevoDiv.appendChild(nuevoLista);
+
+  // Crear el botón de borrar
+  const botonBorrar = crearBotonBorrar();
+  nuevoDiv.appendChild(botonBorrar);
+
+  document.getElementById("agregar-lista").appendChild(nuevoDiv);
+
+  // Restablecer los campos del formulario
+  document.querySelector(".id").value = "";
+  document.querySelector(".nombre").value = "";
+  document.querySelector(".apellido").value = "";
+  document.querySelector(".telefono").value = "";
+  document.querySelector(".ciudad").value = "";
+  document.querySelector(".direccion").value = "";
 };
-  
+*/
