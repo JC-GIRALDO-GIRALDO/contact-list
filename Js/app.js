@@ -1,94 +1,3 @@
-/*
-// funcion para generar el boton de borrar
-function crearBotonBorrar() {
-  
-  const botonBorrar = document.createElement("button"); // Se crea un boton
-  botonBorrar.textContent = "Borrar"; //nombre del boton
-  botonBorrar.classList.add("boton-borrar"); //clase del boton
-  botonBorrar.addEventListener("click", () => {
-    botonBorrar.parentElement.remove(); //funcion flecha para generar la accion de borrar del boton creado
-  });
-  return botonBorrar;
-}
-const agruparDatosDom = () => {
-  const objetoContacto = (id, nombre, apellido, telefono, ciudad, direccion) => {
-    const contactoUbicacion = {
-      ciudad: ciudad,
-      direccion: direccion
-    };
-
-    const contacto = {
-      id: id,
-      nombre: nombre,
-      apellido: apellido,
-      telefono: telefono,
-      ubicacion: contactoUbicacion
-    };
-
-    return contacto;
-  };
-  const datosContacto = {
-    id: document.querySelector(".id").value,
-    nombre: document.querySelector(".nombre").value,
-    apellido: document.querySelector(".apellido").value,
-    telefono: document.querySelector(".telefono").value,
-    ciudad: document.querySelector(".ciudad").value,
-    direccion: document.querySelector(".direccion").value
-  };
-
-  const contacto = objetoContacto(
-    datosContacto.id,
-    datosContacto.nombre,
-    datosContacto.apellido,
-    datosContacto.telefono,
-    datosContacto.ciudad,
-    datosContacto.direccion
-  );
-  const contactoJSON = JSON.stringify(contacto);
-  console.log(contactoJSON);
-
-  return contactoJSON; // Devolver el contacto como JSON en lugar de un objeto
-};
-
-const crearListaNueva = () => {
-  const contactoJSON = agruparDatosDom();
-  const contacto = JSON.parse(contactoJSON); // Convertir el contacto de nuevo a un objeto
-
-  const nuevoDiv = document.createElement("div");
-  const nuevoLista = document.createElement("ul");
-
-  for (const propiedad in contacto) {
-    if (propiedad === "ubicacion") {
-      const ubicacion = contacto[propiedad];
-      for (const ubicacionPropiedad in ubicacion) {
-        const nuevoItem = document.createElement("li");
-        nuevoItem.textContent = `${ubicacionPropiedad}: ${ubicacion[ubicacionPropiedad]}`;
-        nuevoLista.appendChild(nuevoItem);
-      }
-    } else {
-      const nuevoItem = document.createElement("li");
-      nuevoItem.textContent = `${propiedad}: ${contacto[propiedad]}`;
-      nuevoLista.appendChild(nuevoItem);
-    }
-  }
-
-  nuevoDiv.appendChild(nuevoLista);
-
-  // Crear el botón de borrar
-  const botonBorrar = crearBotonBorrar();
-  nuevoDiv.appendChild(botonBorrar);
-
-  document.getElementById("agregar-lista").appendChild(nuevoDiv);
-
-  // Restablecer los campos del formulario
-  document.querySelector(".id").value = "";
-  document.querySelector(".nombre").value = "";
-  document.querySelector(".apellido").value = "";
-  document.querySelector(".telefono").value = "";
-  document.querySelector(".ciudad").value = "";
-  document.querySelector(".direccion").value = "";
-};
-*/
 //-------------------------TRABAJO CONTACT-LIST--------------------------//
 
 const listaDeContactos = [];
@@ -127,21 +36,30 @@ const agregarContacto = (id, nombre, apellido, telefono, ciudad, direccion) => {
 };
 
 // Función que me permite borra una lista de contacto según el índice.
-const eliminarContacto = (id) => {
-  const indice = listaDeContactos.findIndex((contacto) => contacto.id === id);// Constante que me busca en el índice del array el "id" por medio del método "findIndex".
-  if (indice !== -1) { 
-    listaDeContactos.splice(indice, 1); // Me busca el índice y elimina el espacio.
+const eliminarContacto = (id) => { // Defino una constante con el parámetro id con el cual relaciono la lista. 
+  const indice = listaDeContactos.findIndex((contacto) => contacto.id === id);// Genero una función callback que recorre cada elemento de la lista y me trae la id.
+
+  if (indice !== -1) { /*findIndex() devuelve -1 cuando no se encuentra ningún elemento que cumpla con la condición especificada. En este caso, si se encuentra 
+                         un contacto con el ID especificado, indice será un valor distinto de -1 y el código dentro de este bloque if se ejecutará.*/
+
+    listaDeContactos.splice(indice, 1); /* Si se cumple la condición anterior, se utiliza el método splice() en el array listaDeContactos para eliminar un 
+                                           elemento en la posición indice. El número 1 como segundo argumento indica que se eliminará un solo elemento a 
+                                           partir de esa posición.*/
     console.log(`Contacto con ID ${id} eliminado correctamente.`);
   } else {
     console.log(`No se encontró ningún contacto con ID ${id}.`);
   }
 };
 
+// Función que me permite editar una lista de contacto según el índice.
 const actualizarContacto = (id, nuevosDatos) => {
-  const indice = listaDeContactos.findIndex((contacto) => contacto.id === id);
-  if (indice !== -1) {
+  const indice = listaDeContactos.findIndex((contacto) => contacto.id === id);// nuevosDatos es un objeto que contiene los nuevos datos que se utilizarán para actualizar el contacto.
+  if (indice !== -1) {  
     const contactoActualizado = {
-      ...listaDeContactos[indice],
+      ...listaDeContactos[indice],  /*Los tres puntos (...) en JavaScript se conocen como el operador de propagación (spread operator), 
+                                      Permite descomponer un array en sus elementos individuales, Permite combinar múltiples arrays en uno solo,  
+                                      Permite realizar copias superficiales de arrays y objetos en lugar de referencias, Permite pasar múltiples 
+                                      argumentos a una función como un array */
       ...nuevosDatos
     };
     listaDeContactos[indice] = contactoActualizado;
@@ -153,9 +71,9 @@ const actualizarContacto = (id, nuevosDatos) => {
 
 
 // Imprimir en Pantalla por medio del alert.
-const imprimirListaContactos = (listaDeContactos) => {
-  let mensaje = "Lista de contactos:\n\n";
-  listaDeContactos.forEach((contacto) => {
+const imprimirListaContactos = (listaDeContactos) => { // A la función le paso "listaDeContactos"
+  let mensaje = "Lista de contactos:\n\n"; // Un pequeño mensaje y seguido todas las listas debajo
+  listaDeContactos.forEach((contacto) => {  // Itero sobre los elementos de un array y ejecuto el mensaje que va a llevar cada ítem.
     mensaje += `ID: ${contacto.id}\n`;
     mensaje += `Nombre: ${contacto.nombre}\n`;
     mensaje += `Teléfono: ${contacto.telefono}\n`;
@@ -222,18 +140,19 @@ agregarContacto(
 
 // Llamar las listas, eliminar id, imprimir lista, editar lista.
 
+// Muestro todas las listas generadas
 console.log(listaDeContactos);
+// Elimino una lista con él, id.
+eliminarContacto(1894981257);
+// Muestro todas las listas generadas ya sin la eliminada
 console.log(listaDeContactos);
-eliminarContacto(1060595098);
-console.log(listaDeContactos);
-console.log(listaDeContactos);
-console.log(listaDeContactos);
+// Imprimo por consola las listas restantes
 imprimirListaContactos(listaDeContactos);
-
+// Actualizar Contacto
 actualizarContacto(1058981258, {
   telefono: 3201234567,
   direccion: "calle 55 # 32e-28"
 });
-
+// Muestro todas las listas generadas sin la eliminada y con la editada
 imprimirListaContactos(listaDeContactos);
 
