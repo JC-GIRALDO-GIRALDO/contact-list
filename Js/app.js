@@ -94,9 +94,10 @@ const crearListaNueva = () => {
 const listaDeContactos = [];
 /* Cree una función flecha para generar los datos pedidos por el trabajo 
    "CONTACT-LIST" en el cual pide que se ingrese (id, nombre completo, 
-   teléfono, ciudad, Dirección). Dentro de la función creo tres constantes,
-   una con los datos de ubicación, otra con la constante de "nombreCompleto" 
-   y la otra con los datos en general que va a tener la lista. */
+   teléfono, ciudad, Dirección). Dentro de la función creo cuatro constantes,
+   una con los datos de ubicación, otra con la constante de "nombreCompleto", 
+   otra donde junto al nombre y apellido y la otra con los datos en general 
+   que va a tener la lista. */
 const agregarContacto = (id, nombre, apellido, telefono, ciudad, direccion) => {
   /* Primer error. La constante "datoUbicacion" la declaré después de 
    "datosLista" lo cual me genero un error y me toco declararla primero 
@@ -122,20 +123,36 @@ const agregarContacto = (id, nombre, apellido, telefono, ciudad, direccion) => {
     telefono: telefono, // Recibe telefono
     ubicacion: datoUbicacion, // Recibe ciudad y direccion
   };
-
-  listaDeContactos.push(datosLista);
+  listaDeContactos.push(datosLista); // Para enviar la lista a la lista de contactos y no tener que estar copiando y pegando parámetros.
 };
 
+// Función que me permite borra una lista de contacto según el índice.
 const eliminarContacto = (id) => {
-  const indice = listaDeContactos.findIndex((contacto) => contacto.id === id);
-  if (indice !== -1) {
-    listaDeContactos.splice(indice, 1);
+  const indice = listaDeContactos.findIndex((contacto) => contacto.id === id);// Constante que me busca en el índice del array el "id" por medio del método "findIndex".
+  if (indice !== -1) { 
+    listaDeContactos.splice(indice, 1); // Me busca el índice y elimina el espacio.
     console.log(`Contacto con ID ${id} eliminado correctamente.`);
   } else {
     console.log(`No se encontró ningún contacto con ID ${id}.`);
   }
 };
 
+const actualizarContacto = (id, nuevosDatos) => {
+  const indice = listaDeContactos.findIndex((contacto) => contacto.id === id);
+  if (indice !== -1) {
+    const contactoActualizado = {
+      ...listaDeContactos[indice],
+      ...nuevosDatos
+    };
+    listaDeContactos[indice] = contactoActualizado;
+    console.log(`Contacto con ID ${id} actualizado correctamente.`);
+  } else {
+    console.log(`No se encontró ningún contacto con ID ${id}.`);
+  }
+};
+
+
+// Imprimir en Pantalla por medio del alert.
 const imprimirListaContactos = (listaDeContactos) => {
   let mensaje = "Lista de contactos:\n\n";
   listaDeContactos.forEach((contacto) => {
@@ -147,6 +164,16 @@ const imprimirListaContactos = (listaDeContactos) => {
   });
   alert(mensaje);
 };
+
+
+/* Generar listas llamando a la función "agregarContacto()"
+          Id: escribe el id
+          Nombre: "escribe nombre"
+          Apellido: "escribe apellido"
+          Teléfono: escribe teléfono
+          Ciudad: "escribe ciudad" 
+          Dirección: escribe dirección
+*/
 
 agregarContacto(
   1060595098,
@@ -193,6 +220,8 @@ agregarContacto(
   "calle 20e # 80-20"
 );
 
+// Llamar las listas, eliminar id, imprimir lista, editar lista.
+
 console.log(listaDeContactos);
 console.log(listaDeContactos);
 eliminarContacto(1060595098);
@@ -200,3 +229,11 @@ console.log(listaDeContactos);
 console.log(listaDeContactos);
 console.log(listaDeContactos);
 imprimirListaContactos(listaDeContactos);
+
+actualizarContacto(1058981258, {
+  telefono: 3201234567,
+  direccion: "calle 55 # 32e-28"
+});
+
+imprimirListaContactos(listaDeContactos);
+
