@@ -51,25 +51,6 @@ const eliminarContacto = (id) => { // Defino una constante con el parámetro id 
   }
 };
 
-// Función que me permite editar una lista de contacto según el índice.
-const actualizarContacto = (id, nuevosDatos) => {
-  const indice = listaDeContactos.findIndex((contacto) => contacto.id === id);// nuevosDatos es un objeto que contiene los nuevos datos que se utilizarán para actualizar el contacto.
-  if (indice !== -1) {  
-    const contactoActualizado = {
-      ...listaDeContactos[indice],  /*Los tres puntos (...) en JavaScript se conocen como el operador de propagación (spread operator), 
-                                      Permite descomponer un array en sus elementos individuales, Permite combinar múltiples arrays en uno solo,  
-                                      Permite realizar copias superficiales de arrays y objetos en lugar de referencias, Permite pasar múltiples 
-                                      argumentos a una función como un array */
-      ...nuevosDatos
-    };
-    listaDeContactos[indice] = contactoActualizado;
-    console.log(`Contacto con ID ${id} actualizado correctamente.`);
-  } else {
-    console.log(`No se encontró ningún contacto con ID ${id}.`);
-  }
-};
-
-
 // Imprimir en Pantalla por medio del alert.
 const imprimirListaContactos = (listaDeContactos) => { // A la función le paso "listaDeContactos"
   let mensaje = "Lista de contactos:\n\n"; // Un pequeño mensaje y seguido todas las listas debajo
@@ -138,7 +119,7 @@ agregarContacto(
   "calle 20e # 80-20"
 );
 
-// Llamar las listas, eliminar id, imprimir lista, editar lista.
+// Llamar las listas, eliminar id, imprimir lista.
 
 // Muestro todas las listas generadas
 console.log(listaDeContactos);
@@ -148,11 +129,3 @@ eliminarContacto(1894981257);
 console.log(listaDeContactos);
 // Imprimo por consola las listas restantes
 imprimirListaContactos(listaDeContactos);
-// Actualizar Contacto
-actualizarContacto(1058981258, {
-  telefono: 3201234567,
-  direccion: "calle 55 # 32e-28"
-});
-// Muestro todas las listas generadas sin la eliminada y con la editada
-imprimirListaContactos(listaDeContactos);
-
