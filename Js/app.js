@@ -1,96 +1,100 @@
-// Array para almacenar las listas generadas
-const listasGeneradas = [];
+//-------------------------TRABAJO CONTACT-LIST--------------------------//
 
-// funcion para generar el boton de borrar
-function crearBotonBorrar() {
-  
-  const botonBorrar = document.createElement("button"); // Se crea un boton
-  botonBorrar.textContent = "Borrar"; //nombre del boton
-  botonBorrar.classList.add("boton-borrar"); //clase del boton
-  botonBorrar.addEventListener("click", () => {
-    botonBorrar.parentElement.remove(); //funcion flecha para generar la accion de borrar del boton creado
-  });
-  return botonBorrar;
-}
+const listaDeContactos = [];
+/* Cree una función flecha para generar los datos pedidos por el trabajo 
+   "CONTACT-LIST" en el cual pide que se ingrese (id, nombre completo, 
+   teléfono, ciudad, Dirección). Dentro de la función creo cuatro constantes,
+   una con los datos de ubicación, otra con la constante de "nombreCompleto", 
+   otra donde junto al nombre y apellido y la otra con los datos en general 
+   que va a tener la lista. */
+const agregarContacto = (nombre, apellido) => {
+  /* Primer error. La constante "datoUbicacion" la declaré después de 
+   "datosLista" lo cual me genero un error y me toco declararla primero 
+   para que estuviera definida. */
 
-// funcion para generar boton de editar el texto
-function editarParrafo(nuevoParrafo) {
+  const datoDelNombre = {
+    nombre: nombre, // Objeto con datos del nombre.
+    apellido: apellido,
+  };
 
-  const botonParrafo = document.createElement("button"); // Se crea un boton
-  botonParrafo.textContent = "Editar"; //nombre del boton
-  botonParrafo.classList.add("editar-parrafo"); //clase del boton
-  botonParrafo.addEventListener("click", () => {
-    const editarInput = document.createElement("input"); 
-    editarInput.value = nuevoParrafo.textContent;
-    nuevoParrafo.textContent = "";
-    nuevoParrafo.appendChild(editarInput);
-    
-    editarInput.addEventListener("blur", () => {
-      nuevoParrafo.textContent = editarInput.value;
-    });
-  });
-  return botonParrafo;
-}
+  /* Igual que el primer error primero definí como iba a poner el nombre 
+     completo para no me diera error de sintaxis. */
 
-// funcion principal con la que se crea la lista 
-let copiarLista = () => {
-  //me trae el valor del nombre desde html input nombre
-  const nombre = document.querySelector(".nombre").value;
-  //condicional para que se deba ingresar el nombre
-  if(nombre.length === 0){
-    alert("El 'nombre' no ha sido ingresado");
-    return nombre;
-  }
-  
-  //me trae el valor del apellido desde html input apellido
-  const apellido = document.querySelector(".apellido").value;
-  //condicional para que se deba ingresar el apellido
-  if(apellido.length === 0){
-    alert("El 'apellido' no ha sido ingresado");
-    return apellido;
-  }
+  const nombreCompleto = Object.values(datoDelNombre).join(" "); // Junto nombre y apellido.
 
-  //se creo un array con nombre y apellido
-  const arregloNombre = [nombre, apellido];
-  //junte nombre y apellido juntos
-  const nombreCompleto = arregloNombre.join(" ");
-  console.log(nombreCompleto);
-
-  //selecciona la clase
-  const elemento = document.getElementById("agregar-lista");
-  const nuevaLista = document.createElement("div");
-
-  //crea el elemento de texto en la lixta (los nombres)
-  const nuevoParrafo = document.createElement("p");
-  nuevoParrafo.textContent = nombreCompleto;
-  nuevaLista.appendChild(nuevoParrafo);
-
-  const botonParrafo = editarParrafo(nuevoParrafo); // Crear el botón de borrar
-  nuevaLista.appendChild(botonParrafo); // Agregar el botón junto con la lista
-
-  const botonBorrar = crearBotonBorrar(); // Crear el botón de borrar
-  nuevaLista.appendChild(botonBorrar); // Agregar el botón junto con la lista
-
-  elemento.appendChild(nuevaLista);
-
-  // Agregar la lista generada al array
-  listasGeneradas.push(nombreCompleto);
-
-  //vuelve a poner los espacios del input en blanco
-  document.querySelector(".nombre").value = "";
-  document.querySelector(".apellido").value = "";
+  const datosLista = {
+    nombre: nombreCompleto, // Recibe nombre completo
+  };
+  listaDeContactos.push(datosLista); // Para enviar la lista a la lista de contactos y no tener que estar copiando y pegando parámetros.
 };
 
-// Función para imprimir todas las listas generadas en la consola
-let imprimirLista = () => {
-  //condicional por si no se ha generado listas nuevas
-  if (listasGeneradas.length === 0) {
-    alert("No hay listas para imprimir");
-    return;
-  }
+// Función que me permite borra una lista de contacto según el índice.
+const eliminarContacto = (nombre) => { // Defino una constante con el parámetro id con el cual relaciono la lista. 
+  const indice = listaDeContactos.findIndex((contacto) => contacto.nombre === nombre);// Genero una función callback que recorre cada elemento de la lista y me trae la id.
 
-  listasGeneradas.forEach((lista) => {
-    alert(`${lista}`);
-  });
+  if (indice !== -1) { /*findIndex() devuelve -1 cuando no se encuentra ningún elemento que cumpla con la condición especificada. En este caso, si se encuentra 
+                         un contacto con el ID especificado, indice será un valor distinto de -1 y el código dentro de este bloque if se ejecutará.*/
+
+    listaDeContactos.splice(indice, 1); /* Si se cumple la condición anterior, se utiliza el método splice() en el array listaDeContactos para eliminar un 
+                                           elemento en la posición indice. El número 1 como segundo argumento indica que se eliminará un solo elemento a 
+                                           partir de esa posición.*/
+    console.log(`Contacto con ID ${nombre} eliminado correctamente.`);
+  } else {
+    console.log(`No se encontró ningún contacto con ID ${nombre}.`);
+  }
 };
-  
+
+// Imprimir en Pantalla por medio del alert.
+const imprimirListaContactos = (listaDeContactos) => { // A la función le paso "listaDeContactos"
+  let mensaje = "Lista de contactos:\n\n"; // Un pequeño mensaje y seguido todas las listas debajo
+  listaDeContactos.forEach((contacto) => {  // Itero sobre los elementos de un array y ejecuto el mensaje que va a llevar cada ítem.
+    mensaje += `Nombre: ${contacto.nombre}\n`
+  });
+  alert(mensaje);
+};
+
+
+/* Generar listas llamando a la función "agregarContacto()"
+          Id: escribe el id
+          Nombre: "escribe nombre"
+          Apellido: "escribe apellido"
+          Teléfono: escribe teléfono
+          Ciudad: "escribe ciudad" 
+          Dirección: escribe dirección
+*/
+
+agregarContacto(
+  "Juan Camilo",
+  "Giraldo Giraldo"
+);
+
+agregarContacto(
+  "Santiago",
+  "Giraldo Castro"
+);
+
+agregarContacto(
+  "Martha Saray",
+  "Giraldo Castro"
+);
+
+agregarContacto(
+  "Jose Alejandro",
+  "Giraldo Castro"
+);
+
+agregarContacto(
+  "Hernan Dario",
+  "Giraldo Zapata"
+);
+
+// Llamar las listas, eliminar id, imprimir lista.
+
+// Muestro todas las listas generadas
+console.log(listaDeContactos);
+// Elimino una lista con él, id.
+eliminarContacto("Santiago");
+// Muestro todas las listas generadas ya sin la eliminada
+console.log(listaDeContactos);
+// Imprimo por consola las listas restantes
+imprimirListaContactos(listaDeContactos);
