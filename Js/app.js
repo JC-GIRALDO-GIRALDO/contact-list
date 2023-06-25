@@ -42,15 +42,6 @@ agregarContacto(
   "Martha Saray",
   "Giraldo Castro"
 );
-agregarContacto(
-  "Jose Alejandro",
-  "Giraldo Castro"
-);
-agregarContacto(
-  "Hernan Dario",
-  "Giraldo Zapata"
-);
-
 console.log(listaDeContactos);
 eliminarContacto("Santiago Giraldo Castro");
 console.log(listaDeContactos);
