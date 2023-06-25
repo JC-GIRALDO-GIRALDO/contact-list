@@ -8,24 +8,18 @@ const listaDeContactos = [];
    otra donde junto al nombre y apellido y la otra con los datos en general 
    que va a tener la lista. */
 const agregarContacto = (id, nombre, apellido, telefono, ciudad, direccion) => {
-  /* Primer error. La constante "datoUbicacion" la declaré después de 
-   "datosLista" lo cual me genero un error y me toco declararla primero 
-   para que estuviera definida. */
 
   const datoDelNombre = {
     nombre: nombre, // Objeto con datos del nombre.
     apellido: apellido,
   };
-
-  /* Igual que el primer error primero definí como iba a poner el nombre 
-     completo para no me diera error de sintaxis. */
-
   const nombreCompleto = Object.values(datoDelNombre).join(" "); // Junto nombre y apellido.
 
   const datoUbicacion = {
     ciudad: ciudad, // Objeto con datos de ubicación.
     direccion: direccion,
   };
+
   const datosLista = {
     id: id, // Recibe id
     nombre: nombreCompleto, // Recibe nombre completo
@@ -69,9 +63,8 @@ const actualizarContacto = (id, nuevosDatos) => {
   }
 };
 
-
 // Imprimir en Pantalla por medio del alert.
-const imprimirListaContactos = (listaDeContactos) => { // A la función le paso "listaDeContactos"
+const imprimirListaContactos = () => { // A la función le paso "listaDeContactos"
   let mensaje = "Lista de contactos:\n\n"; // Un pequeño mensaje y seguido todas las listas debajo
   listaDeContactos.forEach((contacto) => {  // Itero sobre los elementos de un array y ejecuto el mensaje que va a llevar cada ítem.
     mensaje += `ID: ${contacto.id}\n`;
@@ -83,7 +76,6 @@ const imprimirListaContactos = (listaDeContactos) => { // A la función le paso 
   alert(mensaje);
 };
 
-
 /* Generar listas llamando a la función "agregarContacto()"
           Id: escribe el id
           Nombre: "escribe nombre"
@@ -92,7 +84,6 @@ const imprimirListaContactos = (listaDeContactos) => { // A la función le paso 
           Ciudad: "escribe ciudad" 
           Dirección: escribe dirección
 */
-
 agregarContacto(
   1060595098,
   "Juan Camilo",
@@ -101,7 +92,6 @@ agregarContacto(
   "Bello-Antioquia",
   "Calle 20e # 70-60"
 );
-
 agregarContacto(
   1020585458,
   "Santiago",
@@ -110,7 +100,6 @@ agregarContacto(
   "supia-Caldas",
   "carrera 10 # 32-57"
 );
-
 agregarContacto(
   1058981258,
   "Martha Saray",
@@ -119,7 +108,6 @@ agregarContacto(
   "Medellin-Antioquia",
   "carrera 10 # 32-59"
 );
-
 agregarContacto(
   1894981257,
   "Jose Alejandro",
@@ -128,7 +116,6 @@ agregarContacto(
   "Medellin-Antioquia",
   "carrera 10 # 32-59"
 );
-
 agregarContacto(
   89425458,
   "Hernan Dario",
@@ -137,8 +124,6 @@ agregarContacto(
   "Medellin-Antioquia",
   "calle 20e # 80-20"
 );
-
-// Llamar las listas, eliminar id, imprimir lista, editar lista.
 
 // Muestro todas las listas generadas
 console.log(listaDeContactos);
@@ -150,9 +135,10 @@ console.log(listaDeContactos);
 imprimirListaContactos(listaDeContactos);
 // Actualizar Contacto
 actualizarContacto(1058981258, {
+  nombre: "Edison",
   telefono: 3201234567,
   direccion: "calle 55 # 32e-28"
 });
+console.log(listaDeContactos);
 // Muestro todas las listas generadas sin la eliminada y con la editada
-imprimirListaContactos(listaDeContactos);
-
+imprimirListaContactos();
