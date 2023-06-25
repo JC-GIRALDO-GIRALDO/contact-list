@@ -141,4 +141,4 @@ actualizarContacto(1058981258, {
 });
 console.log(listaDeContactos);
 // Muestro todas las listas generadas sin la eliminada y con la editada
-imprimirListaContactos();
+imprimirListaContactos(listaDeContactos);
