@@ -1,6 +1,6 @@
 //-------------------------TRABAJO CONTACT-LIST--------------------------//
 
-const listaDeContactos = [];
+const listaDeContactos = []; // almacena lista dentro del array
 
 const agregarContacto = (nombre, apellido) => {
   const nombreCompleto = `${nombre} ${apellido}`; // Junto nombre y apellido.
@@ -27,9 +27,10 @@ const imprimirListaContactos = () => {
   listaDeContactos.forEach((contacto) => {
     mensaje += `Nombre: ${contacto.nombre}\n`;
   });
-  alert(mensaje);
+  //alert(mensaje); //quitar comentario en el alert para ejecutar
 };
 
+ // crear un contacto llamando a la funcion 
 agregarContacto(
   "Juan Camilo",
   "Giraldo Giraldo"
