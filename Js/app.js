@@ -73,7 +73,7 @@ const imprimirListaContactos = () => { // A la función le paso "listaDeContacto
     mensaje += `Ciudad: ${contacto.ubicacion.ciudad}\n`;
     mensaje += `Dirección: ${contacto.ubicacion.direccion}\n\n`;
   });
-  alert(mensaje);
+  //alert(mensaje);  // quitar comentario del alert para utilizar funcion de imprimir 
 };
 
 /* Generar listas llamando a la función "agregarContacto()"

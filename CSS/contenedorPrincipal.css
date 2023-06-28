@@ -1,8 +1,0 @@
-.container {
-  margin: 4rem auto;
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 2px groove black;
-  width: 600px;
-  display: grid;
-  grid-template-rows: 300px auto;
-}
