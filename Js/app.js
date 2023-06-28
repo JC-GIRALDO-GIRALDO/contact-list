@@ -1,12 +1,7 @@
 //-------------------------TRABAJO CONTACT-LIST--------------------------//
 
-const listaDeContactos = [];
-/* Cree una función flecha para generar los datos pedidos por el trabajo 
-   "CONTACT-LIST" en el cual pide que se ingrese (id, nombre completo, 
-   teléfono, ciudad, Dirección). Dentro de la función creo cuatro constantes,
-   una con los datos de ubicación, otra con la constante de "nombreCompleto", 
-   otra donde junto al nombre y apellido y la otra con los datos en general 
-   que va a tener la lista. */
+const listaDeContactos = []; // se guardan las listas por medio del array
+
 const agregarContacto = (id, nombre, apellido, telefono, ciudad, direccion) => {
 
   const datoDelNombre = {
@@ -51,7 +46,7 @@ const imprimirListaContactos = (listaDeContactos) => { // A la función le paso 
     mensaje += `Ciudad: ${contacto.ubicacion.ciudad}\n`;
     mensaje += `Dirección: ${contacto.ubicacion.direccion}\n\n`;
   });
-  alert(mensaje);
+  // alert(mensaje); // eliminar las lineas del comentario para ejecutar alert
 };
 
 agregarContacto(
